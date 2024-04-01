@@ -30,15 +30,15 @@ teste2: la a0, vetor2
 
 ##### R2 START MODIFIQUE AQUI START #####
 multiplos: add  t0  , a0  , zero  # Endereço do vetor em t0 para iteração
-	   addi t5  , zero, 4     # Carrega t5 com 4 para conseguir tamanho do vetor em bytes
-      	   mul  t5  , a1  , t5    # Carrego em t5 o tamanho total do vetor em bytes
-           add  t5  , a0  , t5    # Carrego endereço final do vetor em t5
+	   addi t3  , zero, 4     # Carrega t3 com 4 para conseguir tamanho do vetor em bytes
+      	   mul  t3  , a1  , t3    # Carrego em t3 o tamanho total do vetor em bytes
+           add  t3  , a0  , t3    # Carrego endereço final do vetor em t3
 loop:	   lw   t1  , 0(t0) 	    # Carrega valor do vetor em t1	
            rem  t2  , t1  , a2	# Carrega resto da divisão do número de t2 por a2
            bne  t2  , zero, else	# If(resto == 0){...}else{...}
-if:	   addi t3  , t3  , 1     # Adiciona 1 em t3 para contagem dos múltiplos
+if:	   addi a0  , a0  , 1     # Adiciona 1 em a0 para contagem dos múltiplos
 else:	   addi t0  , t0  , 4     # Desloca resgistrador do vetor para próximo elemento
-   	   bne  t0  , t5  , loop  # Confere se o vetor ja foi todo lido
+   	   bne  t0  , t3  , loop  # Confere se o vetor ja foi todo lido
            jalr zero, 0(ra)
 ##### R2 END MODIFIQUE AQUI END #####
 
