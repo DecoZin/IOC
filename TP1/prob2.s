@@ -108,21 +108,21 @@ variancia: # (a0(endereço vetor1), a1(endereço vetor2), a2(tamanho dos vetores
         bne     t2, zero, for1  # Se tamanho do vetor = 0 sai do loop
 
         lw      t0, 0(sp)       # Carrego de volta antigo tamanho N do vetor
-        addi     t0, t0, -1     # Subtraio 1 de N
+        addi    t0, t0, -1      # Subtraio 1 de N
         div     a0, t5, t0      # Divido resultado da soma por N - 1 e armazeno no registrador de retorno a0
         addi    sp, sp, 16      # Desalocação de memória 
 
         # Epilogue
         lw      ra, 0(sp)       # Carrego endereço de retorno
-        lw      a1, 16(sp)	# Carrego antigo valor de a1
-        lw      t0, 24(sp)	# Carrego antigo valor de t0
-        lw      t1, 32(sp)	# Carrego antigo valor de t1
-        lw      t2, 40(sp)	# Carrego antigo valor de t2
-        lw      t3, 48(sp)	# Carrego antigo valor de t3
-        lw      t4, 56(sp)	# Carrego antigo valor de t4
-        lw      t5, 64(sp)	# Carrego antigo valor de t5
-        lw      t6, 72(sp)	# Carrego antigo valor de t6
-        addi    sp, sp, 80      # Desalocação de memória
+        lw      a1, 8(sp)	# Carrego antigo valor de a1
+        lw      t0, 16(sp)	# Carrego antigo valor de t0
+        lw      t1, 24(sp)	# Carrego antigo valor de t1
+        lw      t2, 32(sp)	# Carrego antigo valor de t2
+        lw      t3, 40(sp)	# Carrego antigo valor de t3
+        lw      t4, 48(sp)	# Carrego antigo valor de t4
+        lw      t5, 56(sp)	# Carrego antigo valor de t5
+        lw      t6, 64(sp)	# Carrego antigo valor de t6
+        addi    sp, sp, 72      # Desalocação de memória
         ret                    
 
 ##### R2 END MODIFIQUE AQUI END #####
