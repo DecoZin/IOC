@@ -33,7 +33,7 @@ teste2: la a0, vetor2
 # Esse espaço é para você escrever o código dos procedimentos. 
 # Por enquanto eles estão vazios
 
-media:  # (a2(endeteço do vetor), a3(tamanho do vetor)) -> a0(valor médio)
+media:  # (a0(endeteço do vetor), a1(tamanho do vetor)) -> a0(valor médio)
         # Prologue
         addi	sp, sp, -40     # Alocação de memória 
         sw      ra, 0(sp)	# Armazeno endereço de retorno
@@ -43,11 +43,11 @@ media:  # (a2(endeteço do vetor), a3(tamanho do vetor)) -> a0(valor médio)
         sw      t3, 32(sp)	# Armazeno valor de t3 para usar ele
 
         # Function
-        add	t0, zero, a2    # Carrego endereço do vetor1 em t0 para iteração
+        add	t0, zero, a0    # Carrego endereço do vetor1 em t0 para iteração
         add	t1, zero, zero  # Inicialização t1 com 0
         addi 	t2, zero, 4     # Variável para conseguir endereço final em bytes
-        mul	t2, t2, a3	# Tamanho em bytes do vetor
-        add 	t2, t2, a2	# Endereço final do vetor
+        mul	t2, t2, a1	# Tamanho em bytes do vetor
+        add 	t2, t2, a0	# Endereço final do vetor
 
   loop1:
 	lw	t3, 0(t0)	# Carrego valor do vetor em t2
@@ -55,7 +55,7 @@ media:  # (a2(endeteço do vetor), a3(tamanho do vetor)) -> a0(valor médio)
         addi    t0, t0, 4
         bne     t0, t2, loop1   # Confere se ja somou todos valores do vetor
 
-        div     a0, t1, a3
+        div     a0, t1, a1
     
         # Epilogue
         lw      ra, 0(sp)       # Carrego endereço de retorno
@@ -66,28 +66,27 @@ media:  # (a2(endeteço do vetor), a3(tamanho do vetor)) -> a0(valor médio)
         addi    sp, sp, 40      # Desalocação de memória
         ret
 		
-variancia: # (a2(endereço vetor1), a3(endereço vetor2), a4(tamanho dos vetores)) -> a0
+variancia: # (a0(endereço vetor1), a1(endereço vetor2), a2(tamanho dos vetores)) -> a0
         # Prologue
-        addi    sp, sp, -80     # Alocação de memória 
+        addi    sp, sp, -72     # Alocação de memória 
         sw      ra, 0(sp)	# Armazeno endereço de retorno
-        sw      a2, 8(sp)	# Armazeno valor de a2 para usar ele
-        sw      a3, 16(sp)	# Armazeno valor de a3 para usar ele
-        sw      t0, 24(sp)	# Armazeno valor de t0 para usar ele
-        sw      t1, 32(sp)	# Armazeno valor de t1 para usar ele
-        sw      t2, 40(sp)	# Armazeno valor de t2 para usar ele
-        sw      t3, 48(sp)	# Armazeno valor de t3 para usar ele
-        sw      t4, 56(sp)	# Armazeno valor de t4 para usar ele
-        sw      t5, 64(sp)	# Armazeno valor de t5 para usar ele
-        sw      t6, 72(sp)	# Armazeno valor de t6 para usar ele
+        sw      a1, 8(sp)	# Armazeno valor de a1 para usar ele
+        sw      t0, 16(sp)	# Armazeno valor de t0 para usar ele
+        sw      t1, 24(sp)	# Armazeno valor de t1 para usar ele
+        sw      t2, 32(sp)	# Armazeno valor de t2 para usar ele
+        sw      t3, 40(sp)	# Armazeno valor de t3 para usar ele
+        sw      t4, 48(sp)	# Armazeno valor de t4 para usar ele
+        sw      t5, 56(sp)	# Armazeno valor de t5 para usar ele
+        sw      t6, 64(sp)	# Armazeno valor de t6 para usar ele
 
         # Function
-        add     t0, a2, zero    # Armazeno endereço vetor1 em t0
-        add     t1, a3, zero    # Armazeno endereço vetor2 em t1
-        add     t2, a4, zero    # Armazeno tamanho dos vetores em t2
-        add     a3, t2, zero    # Passo tamanho do vetor no registrador de argumento a3
+        add     t0, a0, zero    # Armazeno endereço vetor1 em t0
+        add     t1, a1, zero    # Armazeno endereço vetor2 em t1
+        add     t2, a2, zero    # Armazeno tamanho dos vetores em t2
+        add     a1, t2, zero    # Passo tamanho do vetor no registrador de argumento a1
         jal     ra, media       # Realizo função média para vetor1
         add     t3, a0, zero    # Armazeno resultado da média em t3
-        add     a2, t1, zero    # Passo endereço do vetor2 no registrador de argumento a2
+        add     a0, t1, zero    # Passo endereço do vetor2 no registrador de argumento a0
         jal     ra, media       # Realizo função média para vetor2
         add     t4, a0, zero    # Armazeno resultado da média em t4
         add     t5, zero, zero  # Inicializo t5 em 0
@@ -115,8 +114,7 @@ variancia: # (a2(endereço vetor1), a3(endereço vetor2), a4(tamanho dos vetores
 
         # Epilogue
         lw      ra, 0(sp)       # Carrego endereço de retorno
-        lw      a2, 8(sp)	# Carrego antigo valor de a2
-        lw      a3, 16(sp)	# Carrego antigo valor de a3
+        lw      a1, 16(sp)	# Carrego antigo valor de a1
         lw      t0, 24(sp)	# Carrego antigo valor de t0
         lw      t1, 32(sp)	# Carrego antigo valor de t1
         lw      t2, 40(sp)	# Carrego antigo valor de t2
