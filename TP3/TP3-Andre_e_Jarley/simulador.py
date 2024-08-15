@@ -1,5 +1,8 @@
 """Module to simulate a Cache Memory."""
 import math
+import os
+
+CURRENT_DIR = os.path.dirname(os.path.abspath(__file__))
 
 class Cache():
     """Class to simulate a Cache"""
@@ -37,19 +40,27 @@ class Cache():
         address = address >> int(math.log(self.block_size, 2))
         older_block = 0
         older_access = 0
+        hit_block = 0
+        hit = False
         for i in range(self.set_size):
             if self.cache[set_index][i]['access_time'] > older_access:
                 older_access = self.cache[set_index][i]['access_time']
                 older_block = i
             self.cache[set_index][i]['access_time'] += 1
-        if  self.cache[set_index][older_block]['address'] == address:
+            if self.cache[set_index][i]['address'] == address:
+                hit = True
+                hit_block = i
+        if  hit:
+            self.cache[set_index][hit_block]['address'] = address
+            self.cache[set_index][hit_block]['access_time'] = 0
+            self.cache[set_index][hit_block]['valid'] = True
             self.hit_count += 1
         else:
+            self.cache[set_index][older_block]['address'] = address
+            self.cache[set_index][older_block]['access_time'] = 0
+            self.cache[set_index][older_block]['valid'] = True
             self.miss_count += 1
-        self.cache[set_index][older_block]['address'] = address
-        self.cache[set_index][older_block]['access_time'] = 0
-        self.cache[set_index][older_block]['valid'] = True
-        self.print_cache()
+            self.print_cache()
 
     def print_cache(self):
         """Save in the output.txt file all the cache blocks in the following format:
@@ -61,7 +72,7 @@ class Cache():
                ...
         xxx x 0x000XXXXX        
         """
-        with open('TP3/TP3-Andre_e_Jarley/output.txt', 'a', encoding="utf-8") as f:
+        with open(f'{CURRENT_DIR}/output.txt', 'a', encoding="utf-8") as f:
             f.write("================\n")
             f.write("IDX V ** ADDR **\n")
             for j in range(self.num_sets):
@@ -77,7 +88,7 @@ class Cache():
     def end(self):
         """Save number of hits and misses to the end of the output file."""
 
-        with open('TP3/TP3-Andre_e_Jarley/output.txt', 'a', encoding="utf-8") as f:
+        with open(f'{CURRENT_DIR}/output.txt', 'a', encoding="utf-8") as f:
             f.write("\n")
             f.write(f"#hits: {self.hit_count}\n")
             f.write(f"#miss: {self.miss_count}")
@@ -87,20 +98,19 @@ def main():
     """Main Function."""
 
     # Create or empty file output.txt
-    with open('TP3/TP3-Andre_e_Jarley/output.txt', 'w', encoding="utf-8") as _:
+    with open(f'{CURRENT_DIR}/output.txt', 'w', encoding="utf-8") as _:
         pass
 
     cache_size = 4096 #int(input()) # Cache size in bytes
     block_size = 1024 #int(input()) # Block size in bytes
     set_size = 4 #int(input())   # Set size in blocks
-    txt_file = 'TP3/TP3-Andre_e_Jarley/test'#input()        # File with addresses
+    txt_file = 'test'#input()        # File with addresses
 
     if not txt_file.endswith('.txt'):
         txt_file = txt_file + '.txt'
 
     cache = Cache(cache_size, block_size, set_size)
-
-    with open(txt_file, 'r', encoding="utf-8") as f:
+    with open(f'{CURRENT_DIR}/{txt_file}', 'r', encoding="utf-8") as f:
         for line in f:
             address = int(line.strip(), 16)
             cache.access(address)
