@@ -8,6 +8,10 @@ class Cache():
     """Class to simulate a Cache"""
 
     def __init__(self, cache_size, block_size, set_size) -> None:
+        # Create or empty file output.txt
+        with open(f'{CURRENT_DIR}/output.txt', 'w', encoding="utf-8") as _:
+            pass
+
         self.cache_size = cache_size
         self.block_size = block_size
         self.set_size = set_size
@@ -97,14 +101,10 @@ class Cache():
 def main():
     """Main Function."""
 
-    # Create or empty file output.txt
-    with open(f'{CURRENT_DIR}/output.txt', 'w', encoding="utf-8") as _:
-        pass
-
-    cache_size = 4096 #int(input()) # Cache size in bytes
-    block_size = 1024 #int(input()) # Block size in bytes
-    set_size = 2 #int(input())   # Set size in blocks
-    txt_file = 'test'#input()        # File with addresses
+    cache_size =  int(input())  # Cache size in bytes
+    block_size = int(input())   # Block size in bytes
+    set_size = int(input())     # Set size in blocks
+    txt_file = input()          # File with addresses
 
     if not txt_file.endswith('.txt'):
         txt_file = txt_file + '.txt'
