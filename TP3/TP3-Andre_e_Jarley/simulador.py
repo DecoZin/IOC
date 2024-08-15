@@ -103,7 +103,7 @@ def main():
 
     cache_size = 4096 #int(input()) # Cache size in bytes
     block_size = 1024 #int(input()) # Block size in bytes
-    set_size = 4 #int(input())   # Set size in blocks
+    set_size = 2 #int(input())   # Set size in blocks
     txt_file = 'test'#input()        # File with addresses
 
     if not txt_file.endswith('.txt'):

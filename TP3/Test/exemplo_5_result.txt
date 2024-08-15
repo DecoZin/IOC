@@ -1,8 +1,3 @@
-Entrada
-0x0CB886CA
-0x06BC89BA
-
-Saída
 ================
 IDX V ** ADDR **
 000 1 0x00032E21
@@ -18,8 +13,3 @@ IDX V ** ADDR **
 
 #hits: 0
 #miss: 2
-
-Parâmetros
-1) O tamanho total da cache, em bytes: 4096
-2) O tamanho de cada linha, em bytes: 1024
-3) O tamanho de cada grupo, em unidades: 2

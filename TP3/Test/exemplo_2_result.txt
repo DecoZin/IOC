@@ -1,13 +1,3 @@
-Entrada
-0x0CB886CA
-0x06BC89BA
-0x379CBAD1
-0x28F3123B
-0x06F98ED5
-0x06F98ED8
-0x06BC89BA
-
-Saída
 ================
 IDX V ** ADDR **
 000 1 0x00032E21
@@ -47,4 +37,3 @@ IDX V ** ADDR **
 
 #hits: 2
 #miss: 5
-
