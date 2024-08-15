@@ -40,8 +40,8 @@ class Cache():
     def access(self, address):
         """Access the cache saving the address accessed and making the valid true"""
 
-        set_index = self.index_mask & address
         address = address >> int(math.log(self.block_size, 2))
+        set_index = self.index_mask & address
         older_block = 0
         older_access = 0
         hit_block = 0
