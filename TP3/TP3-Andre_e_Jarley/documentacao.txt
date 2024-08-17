@@ -1,0 +1,14 @@
+André Lamego Reis de Castro - 2021020473
+Jarley  Brito Reckel Junior - 2020422500
+
+Para rodar o Simulador basta utilizar uma versão do python acima de 3.8 e ter o arquivo com os endereços no mesmo diretorio que o arquivo python.
+Comando para rodar:
+
+python3 path/to/file/simulador.py
+
+As entradas são passadas como input do terminal após dar o comando para rodas recebendo na ordem: tamanho da cache, tamanho do bloco, tamanho do conjunto em blocos e nome do arquivo de teste.
+A memória, quando há mais de um conjunto, é organizada da seguinte forma:
+Conjunto 0: Blocos de 0 a n
+Conjunto 1: Blocos de n+1 a 2n
+...
+O arquivo output.txt será gerado no mesmo diretório que o arquivo python.

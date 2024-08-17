@@ -42,6 +42,7 @@ class Cache():
 
         address = address >> int(math.log(self.block_size, 2))
         set_index = self.index_mask & address
+        address = address >> int(math.log(self.index_mask + 1, 2))
         older_block = 0
         older_access = 0
         hit_block = 0
